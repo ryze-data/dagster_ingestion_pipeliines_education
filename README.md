@@ -1,1 +1,3 @@
-# dagster_ingestion_pipeliines_education
+# Dagster Ingestion Pipelines
+
+See each project README.md for instructions
