@@ -1,8 +1,6 @@
 # Dagster Ingestion Pipelines - Education Examples
 
-# dagster_ingestion_pipelines
-
-This holds s75 and NCES pipelines
+This holds s275 and NCES pipelines
 
 ## Getting started
 
@@ -72,7 +70,7 @@ First, install your Dagster code location as a Python package. By using the --ed
 
 ```bash
 # change to directory with project.toml
-cd .\dagster_ingestion_pipelines_education\  
+cd .\dagster_ingestion_pipelines\  
 # install dependencies
 pip install -e ".[dev]"
 ```

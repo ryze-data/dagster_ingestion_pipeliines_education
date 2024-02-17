@@ -6,6 +6,8 @@ venv_*
 .telemetry/
 storage
 dagster_ingestion_pipelines/dagster_ingestion_pipelines/data/raw/*
+dagster_ingestion_pipelines/dagster_ingestion_pipelines/data/nces/raw/*
+dagster_ingestion_pipelines/dagster_ingestion_pipelines/data/s275/raw/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

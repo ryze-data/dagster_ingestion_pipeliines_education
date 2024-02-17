@@ -60,7 +60,6 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
             # handle .dat files
             elif file.endswith((".dat")):
                 path = os.path.join(root, file)
-                column_headers = [f'COLUMN{i+1}' for i in range(len(df.columns))]
                 col_widths = [11, 8, 8, 10, 10, 10, 10, 10, 10, 10]
                 df = pd.read_fwf(
                     path,
@@ -71,6 +70,7 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                     widths=col_widths,
                     names=None
                 )
+                column_headers = [f'COLUMN{i+1}' for i in range(len(df.columns))]
                 df.columns = column_headers
                 dagster_logger.info(df.head())
                 with snowflake.get_connection() as conn:
@@ -130,7 +130,7 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                         auto_create_table=True,
                         overwrite=True,
                     )
-            if file.startswith("EDGE_GEOCODE_PUBLICSCH") and file.endswith(".txt"):
+            elif file.startswith("EDGE_GEOCODE_PUBLICSCH") and file.endswith(".txt"):
                 path = os.path.join(root, file)
                 df = pd.read_csv(
                     path, dtype=str, encoding="latin1", header=0, sep="|"
@@ -148,7 +148,7 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                         overwrite=True
                     )
             # EDGE_GEOIDS files
-            if file.startswith("EDGE_GEOIDS_") and file.endswith(".TXT"):
+            elif file.startswith("EDGE_GEOIDS_") and file.endswith(".TXT"):
                 path = os.path.join(root, file)
                 df = pd.read_csv(
                     path, dtype=str, encoding="latin1", header=None, sep="|"
