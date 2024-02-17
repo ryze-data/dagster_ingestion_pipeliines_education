@@ -95,12 +95,12 @@ def nces_ccd_files():
             # Below code was added to get rid of other files due to storage constraints.
             # Comment below code out if you want to keep all the files.
             # clean up directory
-            for root, dirs, files in os.walk(input_dir):
-                for file in files:
-                    if not file.endswith(
-                        (".zip", ".txt", ".TXT", ".xlsx", ".csv", ".dat")
-                    ):
-                        os.remove(os.path.join(root, file))
+            # for root, dirs, files in os.walk(input_dir):
+            #     for file in files:
+            #         if not file.endswith(
+            #             (".zip", ".txt", ".TXT", ".xlsx", ".csv", ".dat")
+            #         ):
+            #             os.remove(os.path.join(root, file))
 
         dagster_logger.info("Batch Complete. Waiting 120 seconds")
         time.sleep(120)

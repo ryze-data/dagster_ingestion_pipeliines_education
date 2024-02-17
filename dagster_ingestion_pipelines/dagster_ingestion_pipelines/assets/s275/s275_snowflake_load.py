@@ -47,9 +47,9 @@ def snowflake_s275_raw_tables(snowflake: SnowflakeResource):
                     "Did not match any file patterns in above logic. Skipping file"
                 )
                 dagster_logger.info(file)
-    # clean up directory
-    dagster_logger.info("Cleaning up directory now before completing")
-    for root, dirs, files in os.walk(input_dir):
-        for file in files:
-            if not file.endswith((".zip", "accdb", ".xlsx", ".csv")):
-                os.remove(os.path.join(root, file))
+    # # Uncomment code below if you want to clean up directory
+    # dagster_logger.info("Cleaning up directory now before completing")
+    # for root, dirs, files in os.walk(input_dir):
+    #     for file in files:
+    #         if not file.endswith((".zip", "accdb", ".xlsx", ".csv")):
+    #             os.remove(os.path.join(root, file))
