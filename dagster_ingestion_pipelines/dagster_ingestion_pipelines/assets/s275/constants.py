@@ -3,7 +3,7 @@ This file has variables you want to give assets to. Only non-sensitive variables
 """
 
 # TODO: change this to use files stored here:
-DOWNLOAD_DIRECTORY = "you_must_change here"
+DOWNLOAD_DIRECTORY = "C:/Users/computer/src/github/ryze-data/dagster_ingestion_pipelines_education/dagster_ingestion_pipelines/data/s275/raw"
 # Current websites as of 2024-02-02 https://ospi.k12.wa.us/safs-data-files
 
 # Access Files. Splitting apart to avoid connection break error

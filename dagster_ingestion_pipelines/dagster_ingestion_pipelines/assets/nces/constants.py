@@ -4,7 +4,7 @@ This file has variables you want to give assets to. Only non-sensitive variables
 
 # TODO: change this to use files stored on S:
 # DOWNLOAD_DIR = "S:/Data/Data System/RawSourceFiles/NCES/Common Core of Data"
-DOWNLOAD_DIRECTORY = "C:/Users/computer/src/github/ryze-data/dagster_nces/nces_pipeline/nces_pipeline/data/raw"
+DOWNLOAD_DIRECTORY = "C:/Users/computer/src/github/ryze-data/dagster_ingestion_pipelines_education/dagster_ingestion_pipelines/data/nces/raw"
 
 ####### NCES - Common Core of Data ########
 # from 2015 to 2018, there are 5 files in common core, and a separate geocode file
