@@ -31,14 +31,14 @@ def nces_ccd_files():
     # Required variables. Variables defined in constants.py"
     input_dir = constants.DOWNLOAD_DIRECTORY
     nces_url_batches = [
-        # constants.NCES_URLS_BATCH_1,
-        # constants.NCES_URLS_BATCH_2,
-        # constants.NCES_URLS_BATCH_3,
-        # constants.NCES_URLS_BATCH_4,
-        # constants.NCES_URLS_BATCH_5,
+        constants.NCES_URLS_BATCH_1,
+        constants.NCES_URLS_BATCH_2,
+        constants.NCES_URLS_BATCH_3,
+        constants.NCES_URLS_BATCH_4,
+        constants.NCES_URLS_BATCH_5,
         constants.NCES_URLS_BATCH_6,
-        # constants.NCES_URLS_BATCH_7,
-        # constants.NCES_URLS_BATCH_8,
+        constants.NCES_URLS_BATCH_7,
+        constants.NCES_URLS_BATCH_8,
     ]
 
     # Required functions
