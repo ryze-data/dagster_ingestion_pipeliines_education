@@ -1,8 +1,6 @@
-# Dagster Ingestion Pipelines - Education Examples
-
 # dagster_ingestion_pipelines
 
-This holds s75 and NCES pipelines
+This is a [Dagster](https://dagster.io/) project scaffolded with [`dagster project scaffold`](https://docs.dagster.io/getting-started/create-new-project).
 
 ## Getting started
 
@@ -125,16 +123,3 @@ pytest dagster_ingestion_pipelines
 If you want to enable Dagster [Schedules](https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules) or [Sensors](https://docs.dagster.io/concepts/partitions-schedules-sensors/sensors) for your jobs, the [Dagster Daemon](https://docs.dagster.io/deployment/dagster-daemon) process must be running. This is done automatically when you run `dagster dev`.
 
 Once your Dagster Daemon is running, you can start turning on schedules and sensors for your jobs.
-
-
-## More info
-
-### NCES
-
-Some of this repo orchestrates pulling data from a public school website and uploading to snowflake with dagster [NCES Common Core of Data set](https://nces.ed.gov/ccd/) of archival files (2001 - present)
-
-This project came from the following link:  https://github.com/CCER-RMP/NCES
-
-### S275
-
-Some of this repo pulls [WA State S-275 school personnel data](https://ospi.k12.wa.us/safs-data-files) from the [Washington Office of Superintendent of Public Instruction (OSPI)](https://ospi.k12.wa.us/) website. This project came from the following link: https://github.com/CCER-RMP/S275_ETL

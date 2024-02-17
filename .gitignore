@@ -1,3 +1,12 @@
+# dagster specific
+tmp*
+venv_*
+.dagster
+.nux/
+.telemetry/
+storage
+dagster_ingestion_pipelines/dagster_ingestion_pipelines/data/raw/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
