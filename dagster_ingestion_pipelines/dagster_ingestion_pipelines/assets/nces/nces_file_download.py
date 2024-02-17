@@ -101,9 +101,11 @@ def nces_ccd_files():
             #             (".zip", ".txt", ".TXT", ".xlsx", ".csv", ".dat")
             #         ):
             #             os.remove(os.path.join(root, file))
-
-        dagster_logger.info("Batch Complete. Waiting 120 seconds")
-        time.sleep(120)
+                
+        # the amount of time the pipeline will wait until starting new batch. This solves server timeout errors
+        # i.e. Server Connection Broke Error
+        time.sleep(constants.BATCH_WAIT_TIME_SECONDS)
+        dagster_logger.info(F"Batch Complete. Waiting {constants.BATCH_WAIT_TIME_SECONDS} seconds")
 
     #### these are zip files within zip files
 

@@ -25,6 +25,9 @@ DOWNLOAD_DIRECTORY = "C:/Users/computer/src/github/ryze-data/dagster_ingestion_p
 # 129 = school characteristics file
 # 033 = lunch program accessibility
 
+# the amount of time the pipeline will wait until starting new batch. This solves server timeout errors
+# i.e. Server Connection Broke Error
+BATCH_WAIT_TIME_SECONDS = 120
 NCES_URLS_BATCH_1 = [
     # 2022
     "https://nces.ed.gov/ccd/Data/zip/ccd_sch_029_2122_w_1a_071722.zip",

@@ -88,9 +88,10 @@ def s275_accessdb_files():
 
             else:
                 dagster_logger.info(f"Skipping {url}")
-
-        dagster_logger.info("Batch Complete. Waiting 60 seconds")
-        time.sleep(60)
+        # the amount of time the pipeline will wait until starting new batch. This solves server timeout errors
+        # i.e. Server Connection Broke Error
+        time.sleep(constants.BATCH_WAIT_TIME_SECONDS)
+        dagster_logger.info(F"Batch Complete. Waiting {constants.BATCH_WAIT_TIME_SECONDS} seconds")
 
 
 @asset(deps=[s275_accessdb_files], group_name="S275")
