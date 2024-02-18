@@ -19,7 +19,7 @@ from dagster_snowflake import SnowflakeResource
 from snowflake.connector.pandas_tools import write_pandas
 
 
-@asset(deps=[nces_file_download.nces_ccd_files],group_name="NCES")
+@asset(deps=[nces_file_download.nces_ccd_files], group_name="NCES")
 def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
     dagster_logger = get_dagster_logger()
     # get directory
@@ -29,7 +29,7 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
     for root, dirs, files in os.walk(input_dir):
         for file in files:
             dagster_logger.info(f"Ingesting {file} file")
-            table_name = os.path.basename(file).split('.')[0]
+            table_name = os.path.basename(file).split(".")[0]
             # handle ccd_sch*.csv files
             if file.startswith("ccd_sch") and file.endswith(".csv"):
                 path = os.path.join(root, file)
@@ -68,9 +68,9 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                     sep="\n",
                     index_col=0,
                     widths=col_widths,
-                    names=None
+                    names=None,
                 )
-                column_headers = [f'COLUMN{i+1}' for i in range(len(df.columns))]
+                column_headers = [f"COLUMN{i+1}" for i in range(len(df.columns))]
                 df.columns = column_headers
                 dagster_logger.info(df.head())
                 with snowflake.get_connection() as conn:
@@ -96,7 +96,7 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                         auto_create_table=True,
                         overwrite=True,
                     )
-            
+
             elif file.startswith("EDGE_GEOCODE_POSTSEC") and file.endswith(".TXT"):
                 path = os.path.join(root, file)
                 df = pd.read_csv(
@@ -120,7 +120,7 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                 ).astype(str)
                 dagster_logger.info(df.head())
                 # for handling files with no column names
-                column_headers = ["COLUMN"+str(i) for i in range(len(df.columns))]
+                column_headers = ["COLUMN" + str(i) for i in range(len(df.columns))]
                 df.columns = column_headers
                 with snowflake.get_connection() as conn:
                     write_pandas(
@@ -137,7 +137,7 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                 ).astype(str)
                 dagster_logger.info(df.head())
                 # for handling files with no column names
-                column_headers = ["COLUMN"+str(i) for i in range(len(df.columns))]
+                column_headers = ["COLUMN" + str(i) for i in range(len(df.columns))]
                 df.columns = column_headers
                 with snowflake.get_connection() as conn:
                     write_pandas(
@@ -145,7 +145,7 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                         df,
                         table_name.upper(),
                         auto_create_table=True,
-                        overwrite=True
+                        overwrite=True,
                     )
             # EDGE_GEOIDS files
             elif file.startswith("EDGE_GEOIDS_") and file.endswith(".TXT"):
@@ -178,6 +178,8 @@ def snowflake_nces_raw_tables(snowflake: SnowflakeResource):
                         overwrite=True,
                     )
             else:
-                dagster_logger.info("Skipping file. Did not match any file patterns in above logic.")
+                dagster_logger.info(
+                    "Skipping file. Did not match any file patterns in above logic."
+                )
 
             dagster_logger.info(f"{table_name} handled. Handling next file")

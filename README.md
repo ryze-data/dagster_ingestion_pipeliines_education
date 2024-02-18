@@ -11,11 +11,11 @@ This holds s275 and NCES pipelines
 - Python = 3.10.0 (Python 3.11 is supported as well)
     - ONLY one version of python that is in the Environment Variable path (any confusion of python can produce unexpected errors)
 
-- Assumptions are that this repository is installed in your home directory
+- Assumptions
+    - this repository is installed in your home directory
+    - you are using Windows and that python was installed from the microsoft store
 
 ### Recommended: Virtual Environment
-
-- This assumes you are using Windows and that python was installed from the microsoft store
 
 0. Download repo (optional)
 
@@ -35,6 +35,9 @@ Remove-Item $output  # Optional: Remove the downloaded ZIP file after extraction
 ```bash
 # rename the project
 Rename-Item $HOME\dagster_ingestion_pipelines_education-main dagster_ingestion_pipelines_education
+# Create download folders where files will be stored in case there is not one
+New-Item -Path "$HOME\dagster_ingestion_pipelines_education\dagster_ingestion_pipelines\dagster_ingestion_pipelines\data\nces\raw" -ItemType Directory
+New-Item -Path "$HOME\dagster_ingestion_pipelines_education\dagster_ingestion_pipelines\dagster_ingestion_pipelines\data\s275\raw" -ItemType Directory
 # to be executed in powershell
 cd $HOME\dagster_ingestion_pipelines_education
 ```

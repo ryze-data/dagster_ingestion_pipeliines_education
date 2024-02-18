@@ -28,7 +28,7 @@ def snowflake_s275_raw_tables(snowflake: SnowflakeResource):
         for file in files:
             if file.endswith((".csv")):
                 dagster_logger.info(file)
-                table_name = os.path.basename(file).split('.')[0]
+                table_name = os.path.basename(file).split(".")[0]
 
                 dagster_logger.info(f"printing file: {table_name}")
                 path = os.path.join(root, file)

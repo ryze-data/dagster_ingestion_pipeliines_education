@@ -2,8 +2,20 @@
 This file has variables you want to give assets to. Only non-sensitive variables
 """
 
+import os
+
 # TODO: change this to use files stored here:
-DOWNLOAD_DIRECTORY = "C:/Users/computer/src/github/ryze-data/dagster_ingestion_pipelines_education/dagster_ingestion_pipelines/dagster_ingestion_pipelines/data/s275/raw"
+DOWNLOAD_DIRECTORY = os.path.join(
+    os.path.expanduser("~"),
+    "dagster_ingestion_pipelines_education",
+    "dagster_ingestion_pipelines",
+    "dagster_ingestion_pipelines",
+    "data",
+    "s275",
+    "raw",
+)
+
+
 # Current websites as of 2024-02-02 https://ospi.k12.wa.us/safs-data-files
 
 # the amount of time the pipeline will wait until starting new batch. This solves server timeout errors

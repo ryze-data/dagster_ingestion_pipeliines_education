@@ -101,25 +101,34 @@ def nces_ccd_files():
             #             (".zip", ".txt", ".TXT", ".xlsx", ".csv", ".dat")
             #         ):
             #             os.remove(os.path.join(root, file))
-                
+
         # the amount of time the pipeline will wait until starting new batch. This solves server timeout errors
         # i.e. Server Connection Broke Error
         time.sleep(constants.BATCH_WAIT_TIME_SECONDS)
-        dagster_logger.info(F"Batch Complete. Waiting {constants.BATCH_WAIT_TIME_SECONDS} seconds")
+        dagster_logger.info(
+            f"Batch Complete. Waiting {constants.BATCH_WAIT_TIME_SECONDS} seconds"
+        )
 
     #### these are zip files within zip files
 
-    if not os.path.exists(os.path.join(input_dir, "ccd_SCH_052_2122_l_1a_071722.csv") and os.path.exists(os.path.join(input_dir, "ccd_SCH_052_2122_l_1a_071722_CSV.zip"))):
+    if not os.path.exists(
+        os.path.join(input_dir, "ccd_SCH_052_2122_l_1a_071722.csv")
+        and os.path.exists(
+            os.path.join(input_dir, "ccd_SCH_052_2122_l_1a_071722_CSV.zip")
+        )
+    ):
         unzip(
             os.path.join(input_dir, "ccd_SCH_052_2122_l_1a_071722_CSV.zip"), input_dir
         )
 
-    if not os.path.exists(os.path.join(input_dir, "ccd_SCH_052_1718_l_1a_083118.csv"))  and os.path.exists(os.path.join(input_dir, "ccd_SCH_052_1718_l_1a_083118 CSV.zip")) :
+    if not os.path.exists(
+        os.path.join(input_dir, "ccd_SCH_052_1718_l_1a_083118.csv")
+    ) and os.path.exists(
+        os.path.join(input_dir, "ccd_SCH_052_1718_l_1a_083118 CSV.zip")
+    ):
         unzip(
             os.path.join(input_dir, "ccd_SCH_052_1718_l_1a_083118 CSV.zip"), input_dir
         )
-
-
 
     # Required functions
     def empty_str_to_none(s):

@@ -1,11 +1,19 @@
 """
 This file has variables you want to give assets to. Only non-sensitive variables
 """
+import os
 
-# TODO: change this to use files stored on S:
 # DOWNLOAD_DIR = "S:/Data/Data System/RawSourceFiles/NCES/Common Core of Data"
-DOWNLOAD_DIRECTORY = "C:/Users/computer/src/github/ryze-data/dagster_ingestion_pipelines_education/dagster_ingestion_pipelines/dagster_ingestion_pipelines/data/nces/raw"
-
+# Below is the default. file path
+DOWNLOAD_DIRECTORY = os.path.join(
+    os.path.expanduser("~"),
+    "dagster_ingestion_pipelines_education",
+    "dagster_ingestion_pipelines",
+    "dagster_ingestion_pipelines",
+    "data",
+    "nces",
+    "raw",
+)
 
 ####### NCES - Common Core of Data ########
 # from 2015 to 2018, there are 5 files in common core, and a separate geocode file
@@ -32,12 +40,10 @@ NCES_URLS_BATCH_1 = [
     # 2022
     "https://nces.ed.gov/ccd/Data/zip/ccd_sch_029_2122_w_1a_071722.zip",
     "https://nces.ed.gov/ccd/Data/zip/ccd_SCH_052_2122_l_1a_071722.zip",
-    "https://nces.ed.gov/ccd/Data/zip/ccd_sch_059_2122_l_1a_071722.zip"
-
+    "https://nces.ed.gov/ccd/Data/zip/ccd_sch_059_2122_l_1a_071722.zip",
 ]
 
 NCES_URLS_BATCH_2 = [
-
     "https://nces.ed.gov/ccd/Data/zip/ccd_sch_129_2122_w_1a_071722.zip",
     "https://nces.ed.gov/ccd/Data/zip/ccd_sch_033_2122_l_1a_071722.zip"
     # geocode
@@ -64,7 +70,6 @@ NCES_URLS_BATCH_3 = [
 ]
 
 NCES_URLS_BATCH_4 = [
-
     "https://nces.ed.gov/ccd/Data/zip/ccd_sch_129_2021_w_1a_080621.zip",
     "https://nces.ed.gov/ccd/Data/zip/ccd_sch_033_2021_l_1a_080621.zip"
     # geocode
@@ -147,7 +152,6 @@ NCES_URLS_BATCH_7 = [
 ]
 
 NCES_URLS_BATCH_8 = [
-
     # 2015
     "https://nces.ed.gov/ccd/Data/zip/ccd_sch_029_1415_w_0216601a_txt.zip",
     "https://nces.ed.gov/ccd/Data/zip/ccd_sch_052_1415_w_0216161a_txt.zip",
@@ -220,50 +224,49 @@ NCES_URLS_BATCH_8 = [
     "https://nces.ed.gov/ccd/data/zip/sc991bow_dat.zip",
 ]
 
-    # Convert geocode .xlsx files to .txt where .txt is not supplied
+# Convert geocode .xlsx files to .txt where .txt is not supplied
 GEOCODECONVERT = [
-        # public school
-        (
-            "EDGE_GEOCODE_PUBLICSCH_1516/EDGE_GEOCODE_PUBLICSCH_1516.xlsx",
-            "EDGE_GEOCODE_PUBLICSCH_1516/EDGE_GEOCODE_PUBLICSCH_1516.txt",
-        )
-        # postsecondary
-        ,
-        ("EDGE_GEOCODE_POSTSECSCH_1819.xlsx", "EDGE_GEOCODE_POSTSECSCH_1819.txt"),
-        ("EDGE_GEOCODE_POSTSECSCH_1718.xlsx", "EDGE_GEOCODE_POSTSECSCH_1718.txt"),
-        (
-            "EDGE_GEOCODE_POSTSECONDARYSCH_1617/EDGE_GEOCODE_POSTSECSCH_1617.xlsx",
-            "EDGE_GEOCODE_POSTSECONDARYSCH_1617/EDGE_GEOCODE_POSTSECSCH_1617.txt",
-        ),
-        (
-            "EDGE_GEOCODE_POSTSECONDARYSCH_1516/EDGE_GEOCODE_POSTSECONDARYSCH_1516.xlsx",
-            "EDGE_GEOCODE_POSTSECONDARYSCH_1516/EDGE_GEOCODE_POSTSECONDARYSCH_1516.txt",
-        ),
-    ]
-
-EDGE_GEOCODE_POSTSECSCH_COLUMNS = [
-"UNITID"
-,"INSTNM"
-,"STREET"
-,"CITY"
-,"STATE"
-,"ZIP"
-,"STFIP"
-,"CNTY"
-,"NMCNTY"
-,"LOCALE"
-,"LAT"
-,"LON"
-,"CBSA"
-,"NMCBSA"
-,"CBSATYPE"
-,"CSA"
-,"NMCSA"
-,"NECTA"
-,"NMNECTA"
-,"CD"
-,"SLDL"
-,"SLDU"
-,"SCHOOLYEAR"
+    # public school
+    (
+        "EDGE_GEOCODE_PUBLICSCH_1516/EDGE_GEOCODE_PUBLICSCH_1516.xlsx",
+        "EDGE_GEOCODE_PUBLICSCH_1516/EDGE_GEOCODE_PUBLICSCH_1516.txt",
+    )
+    # postsecondary
+    ,
+    ("EDGE_GEOCODE_POSTSECSCH_1819.xlsx", "EDGE_GEOCODE_POSTSECSCH_1819.txt"),
+    ("EDGE_GEOCODE_POSTSECSCH_1718.xlsx", "EDGE_GEOCODE_POSTSECSCH_1718.txt"),
+    (
+        "EDGE_GEOCODE_POSTSECONDARYSCH_1617/EDGE_GEOCODE_POSTSECSCH_1617.xlsx",
+        "EDGE_GEOCODE_POSTSECONDARYSCH_1617/EDGE_GEOCODE_POSTSECSCH_1617.txt",
+    ),
+    (
+        "EDGE_GEOCODE_POSTSECONDARYSCH_1516/EDGE_GEOCODE_POSTSECONDARYSCH_1516.xlsx",
+        "EDGE_GEOCODE_POSTSECONDARYSCH_1516/EDGE_GEOCODE_POSTSECONDARYSCH_1516.txt",
+    ),
 ]
 
+EDGE_GEOCODE_POSTSECSCH_COLUMNS = [
+    "UNITID",
+    "INSTNM",
+    "STREET",
+    "CITY",
+    "STATE",
+    "ZIP",
+    "STFIP",
+    "CNTY",
+    "NMCNTY",
+    "LOCALE",
+    "LAT",
+    "LON",
+    "CBSA",
+    "NMCBSA",
+    "CBSATYPE",
+    "CSA",
+    "NMCSA",
+    "NECTA",
+    "NMNECTA",
+    "CD",
+    "SLDL",
+    "SLDU",
+    "SCHOOLYEAR",
+]

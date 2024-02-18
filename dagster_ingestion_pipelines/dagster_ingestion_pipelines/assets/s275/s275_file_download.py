@@ -92,19 +92,24 @@ def s275_accessdb_files():
                             unzip(path, input_dir)
                         break  # If successful, exit the loop
                     except requests.exceptions.ChunkedEncodingError as e:
-                        print(f"Encountered ChunkedEncodingError: {e}. Retrying in {constants.BATCH_WAIT_TIME_SECONDS} seconds...")
-                        time.sleep(constants.BATCH_WAIT_TIME_SECONDS)  # Wait for n seconds before retrying
+                        print(
+                            f"Encountered ChunkedEncodingError: {e}. Retrying in {constants.BATCH_WAIT_TIME_SECONDS} seconds..."
+                        )
+                        time.sleep(
+                            constants.BATCH_WAIT_TIME_SECONDS
+                        )  # Wait for n seconds before retrying
                     except requests.exceptions.RequestException as e:
                         print(f"Encountered a request exception: {e}")
                         break  # Exit the loop on other request exceptions
-
 
             else:
                 dagster_logger.info(f"Skipping {url}")
         # the amount of time the pipeline will wait until starting new batch. This solves server timeout errors
         # i.e. Server Connection Broke Error
         time.sleep(constants.BATCH_WAIT_TIME_SECONDS)
-        dagster_logger.info(F"Batch Complete. Waiting {constants.BATCH_WAIT_TIME_SECONDS} seconds")
+        dagster_logger.info(
+            f"Batch Complete. Waiting {constants.BATCH_WAIT_TIME_SECONDS} seconds"
+        )
 
 
 @asset(deps=[s275_accessdb_files], group_name="S275")

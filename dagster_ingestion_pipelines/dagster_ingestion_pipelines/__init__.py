@@ -22,8 +22,12 @@ s275_load_assets = load_assets_from_modules([s275_snowflake_load])
 
 
 defs = Definitions(
-    assets=[*nces_download_assets, *nces_load_assets,
-            *s275_download_assets, *s275_load_assets],
+    assets=[
+        *nces_download_assets,
+        *nces_load_assets,
+        *s275_download_assets,
+        *s275_load_assets,
+    ],
     resources={
         "sf_io_manager": SnowflakePandasIOManager(
             # Read about using environment variables and secrets in Dagster:
