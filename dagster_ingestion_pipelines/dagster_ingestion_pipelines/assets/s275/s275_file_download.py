@@ -73,18 +73,31 @@ def s275_accessdb_files():
             # download url zip files
             if not os.path.exists(path):
                 dagster_logger.info(f"Downloading {url}")
-                with requests.get(url, stream=True) as r:
-                    r.raise_for_status()
-                    with open(path, "wb") as f:
-                        # This was added because some csv files were too big and it killed the request
-                        for chunk in r.iter_content(chunk_size=10000):
-                            # If you have chunk encoded response uncomment if
-                            # and set chunk_size parameter to None.
-                            # if chunk:
-                            f.write(chunk)
+                while True:
+                    try:
+                        response = requests.get(url)
+                        response.raise_for_status()  # Check for any request errors
+                        # Process the response data
+                        with requests.get(url, stream=True) as r:
+                            r.raise_for_status()
+                            with open(path, "wb") as f:
+                                # This was added because some csv files were too big and it killed the request
+                                for chunk in r.iter_content(chunk_size=10000):
+                                    # If you have chunk encoded response uncomment if
+                                    # and set chunk_size parameter to None.
+                                    # if chunk:
+                                    f.write(chunk)
 
-                    dagster_logger.info(f"Unzipping {path}")
-                    unzip(path, input_dir)
+                            dagster_logger.info(f"Unzipping {path}")
+                            unzip(path, input_dir)
+                        break  # If successful, exit the loop
+                    except requests.exceptions.ChunkedEncodingError as e:
+                        print(f"Encountered ChunkedEncodingError: {e}. Retrying in {constants.BATCH_WAIT_TIME_SECONDS} seconds...")
+                        time.sleep(constants.BATCH_WAIT_TIME_SECONDS)  # Wait for n seconds before retrying
+                    except requests.exceptions.RequestException as e:
+                        print(f"Encountered a request exception: {e}")
+                        break  # Exit the loop on other request exceptions
+
 
             else:
                 dagster_logger.info(f"Skipping {url}")
