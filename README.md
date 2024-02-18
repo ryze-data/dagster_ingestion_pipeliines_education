@@ -95,7 +95,6 @@ Then, start the Dagster UI web server:
 dagster dev
 ```
 
-
 Open http://localhost:3000 with your browser to see the project.
 
 You can start writing assets in `dagster_ingestion_pipelines/assets` directory with the @asset decorator. The assets are automatically loaded into the Dagster code location as you define them.
